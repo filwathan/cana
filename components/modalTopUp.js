@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 import { useSelector } from 'react-redux';
 import axios from 'axios'
@@ -10,7 +11,9 @@ const ModalTopUp = () => {
     const router = useRouter();
 
     const postTopUp = async (value)=>{
+        console.log("masuk sini")
         try{
+            console.log("masuk ke top up")
             await axios.post(`${process.env.NEXT_PUBLIC_URL}/transactions/topup`, {amount: value}, {headers: {"authorization" : `Bearer ${token.token}`}})
             router.push("/home");
         }catch(err){
@@ -22,7 +25,9 @@ const ModalTopUp = () => {
 
     const updateTopUp = (e)=>{
         e.preventDefault()
+        console.log("first")
         const topUp = e.target.topUp.value
+        console.log(topUp)
         postTopUp(topUp)
     }
 
@@ -39,12 +44,14 @@ const ModalTopUp = () => {
                 <div className="flex gap-5 pt-5">
                     <div className="border-2 border-black rounded-lg inline-block overflow-hidden">
                         <form onSubmit={updateTopUp}>
-                            <input type='number' name='phoneNumber' className='outline-none px-2' />
+                            <input type='number' name='topUp' className='outline-none px-2' placeholder="0" />
                         </form>
                     </div>
                 </div>
                 <div className="modal-action pt-10">
-                    <a href="/home" className="btn ">Submit</a>
+                    <a href="/home" className="btn ">
+                        <button type="submit" className="btn">submit</button>
+                    </a>
                 </div>
             </div>  
         </div>

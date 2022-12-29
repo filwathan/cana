@@ -30,6 +30,8 @@ const Home = () => {
         }
     }
 
+    
+
 
   return (
     <div className='font-Nunito-sans'>
