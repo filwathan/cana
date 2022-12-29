@@ -25,7 +25,7 @@ const Navbar = () => {
             </Link>
         </div>        
         <div className='hover:opacity-50'>
-            <Link className='flex gap-5 px-8 ' href="/home">
+            <Link className='flex gap-5 px-8 ' href="/transfer-pick">
                 <Icon.ArrowUp />
                 <div>Transfer</div>
             </Link>

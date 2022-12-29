@@ -7,7 +7,7 @@ import Image from 'next/image'
 import users from '../assets/images/users.png'
 import Link from 'next/link'
 
-const TransferSearchReceiver = () => {
+const Transfer = () => {
    return (
     <div className='font-Nunito-sans'>
         <Header />
@@ -30,8 +30,8 @@ const TransferSearchReceiver = () => {
                                             <Image className='w-[70px] h-[70px]' src={users} alt="users" />
                                         </div>
                                         <div className='px-5 py-7'>
-                                            <p className='text-xl text-[#514F5B] font-semibold'>Sueb</p>
-                                            <p className='text-md text-[#7A7886] pt-1'>+62 813-8492-9994</p>
+                                            <p className='text-xl text-[#514F5B] font-semibold'>harry</p>
+                                            <p className='text-md text-[#7A7886] pt-1'>+62 852-4568-7845</p>
                                         </div>
                                     </div>
                                 </div>
@@ -73,4 +73,4 @@ const TransferSearchReceiver = () => {
   )
 }
 
-export default TransferSearchReceiver
+export default Transfer

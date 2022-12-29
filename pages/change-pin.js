@@ -55,7 +55,7 @@ const ChangePin = () => {
                                 </div>
                             </div>  
                             <div className='flex justify-center '>
-                                <button className='btn w-1/2'>Edit Phone Number</button>
+                                <button className='btn w-1/2'>change pin</button>
                             </div>
                         </form>
                         
