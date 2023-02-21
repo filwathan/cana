@@ -18,33 +18,20 @@ import Header from '../components/header'
 
 const LandingPage = () => {
   return(
-    <div>
-      <div>
+    <div className='w-screen'>
+        <Header></Header>
         <section className='bg-slate-50'>
-          {/* <nav className="flex px-32 pt-14 items-center w-screen">
-              <div className="text-xl font-Nunito-sans flex-1 text-[#6379F4] font-bold">CANA</div>
-                <div className="flex gap-5">
-                  <div className=" ">
-                    <button className="btn bg-white border border-[#6379F4] border-2 rounded-md h-10 w-[100px] font-Nunito-sans text-[#6379F4]">Login</button>
-                  </div>
-                  <div>
-                    <button className="btn bg-[#6379F4] border border-[#6379F4] rounded-md h-10 w-[100px] font-Nunito-sans text-white">Sign Up</button>
-                  </div>
-                </div>
-            </nav> */}
-            <Header></Header>
-
             <div className='grid grid-cols-[720px_minmax(720px,_1fr)] pb-20'>
                 <div className='pl-32'>
                   <Image src={bg} alt="mobile-view"/>
                 </div>
 
                 <div className="">
-                  <div className='pt-[200px]'>
-                    <div className='w-[474px]'>
+                  <div className='pt-[200px] m-0'>
+                    <div className='w-[450px]'>
                       <h1 className='text-6xl font-semibold leading-[80px]'>Awesome App For Saving <span className='text-[#6379F4]'>Time.</span></h1>
                     </div>
-                    <div className='w-[474px] pt-[30px]'>
+                    <div className='w-[450px] pt-[30px] m-0'>
                       <p className='text-lg font-normal text-md'>We bring you a mobile app for banking problems that oftenly wasting much of your times.</p>
                     </div>
                     <div className='pt-[50px]'>
@@ -135,7 +122,7 @@ const LandingPage = () => {
             </div>
 
             <div>
-                <div className='w-[606px] pt-[180px]'>
+                <div className='w-[606px] pt-[180px] m-0'>
                     <h1 className='text-6xl font-semibold leading-[90px] font-nunito'>All The <span className='text-[#6379F4]'>Great</span> CANA Features.</h1>
                 </div>
                 <div className='w-[620px] h-[120px] border rounded-[25px] bg-white mt-10 px-5 py-5'>
@@ -199,12 +186,11 @@ const LandingPage = () => {
                 <p className='text-[#EFEFEFE5]'>2020 FazzPay. All right reserved.</p>
                 <div className='flex gap-7 pr-32'>
                   <p className='text-[#EFEFEFE5]'>+62 813 8826 2406</p>
-                  <p className='text-[#EFEFEFE5]'>contact@barengan-ajah.com</p>
+                  <p className='text-[#EFEFEFE5]'>contact@cana.com</p>
                 </div>
               </div>
           </footer>
         </section>
-      </div>
     </div>
   )
 }

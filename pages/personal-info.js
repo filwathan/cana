@@ -9,26 +9,28 @@ import Link from 'next/link'
 
 import { useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
+import http from '../helpers/http'
 
 const PersonalInfo = () => {
     const token = useSelector((state)=> state.auth.token)
+    
+    
+    //get profile
     const [profil, setProfil] = useState({});
+    const getProfile = async () => {
+        try{
+            const { data } = await http(token).get(`/profile`);
+            setProfil(data.results)
+        }catch(err){
+            console.log(err);
+            setProfil({});
+        }
+    }
     
     useEffect(() =>{
         getProfile()
     },[])
-
-    const getProfile = async () => {
-        try{
-        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_URL}/profile`, {headers: {"authorization" : `Bearer ${token.token}`}});
-        setProfil(data.results)
-        }catch(err){
-        setProfil({});
-        }
-    }
-
-
+    
   return (
     <div className='font-Nunito-sans'>
         <Header />

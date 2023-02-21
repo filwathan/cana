@@ -26,7 +26,7 @@ const initialState = {
         state.loading = false;
       });
       build.addCase(loginAction.fulfilled, ( state, action ) => {
-        state.token = action.payload;
+        state.token = action.payload.token;
         state.error = null;
         state.loading = false
       });
@@ -38,7 +38,7 @@ const initialState = {
         state.loading = false;
       });
       build.addCase(registerAction.fulfilled, ( state, action ) => {
-        state.token = action.payload;
+        state.token = action.payload.token;
         state.error = null;
         state.loading = false
       });

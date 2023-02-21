@@ -6,9 +6,41 @@ import * as Icon from 'react-feather'
 import Image from 'next/image'
 import users from '../assets/images/users.png'
 import cheklist from '../assets/images/cheklist.png'
+import { useSelector, useDispatch } from 'react-redux'
+import http from '../helpers/http'
 import Link from 'next/link'
 
 const Success = () => {
+    const token = useSelector((state) => state.auth.token)
+    const trx = useSelector((state) => state.transaction)
+
+    // get profile
+    const [profil, setProfil] = React.useState({});
+    const getProfile = async () => {
+        try{
+        const { data } = await http(token).get(`/profile`);
+        setProfil(data.results)
+        }catch(err){
+        setProfil({});
+        }
+    }
+
+    //get detail recipient
+    const [recipient, setRecipient] = React.useState({})
+    const getRecipient = async () => {
+        try {
+            const {data} = await http(token).get('/transactions/recipient/'+ trx.recipientId)
+            setRecipient(data.results)
+        } catch (error) {
+            console.log('error')
+        }
+    } 
+
+    React.useEffect(() => {
+        getProfile()
+        getRecipient()
+    }, [])
+
    return (
     <div className='font-Nunito-sans'>
         <Header />
@@ -35,28 +67,28 @@ const Success = () => {
                                     <div className='w-[790px] h-[90px] rounded-xl bg-white shadow-md'>
                                         <div className='px-5 py-5'>
                                             <p className='text-md text-[#7A7886]'>Amount</p>
-                                            <p className='text-2xl text-[#514F5B] font-semibold'>Rp100.000</p>
+                                            <p className='text-2xl text-[#514F5B] font-semibold'>Rp { trx.amount}</p>
                                         </div>
                                     </div>
 
                                     <div className='w-[790px] h-[90px] rounded-xl bg-white shadow-md'>
                                         <div className='px-5 py-5'>
                                             <p className='text-md text-[#7A7886]'>Balance Left</p>
-                                            <p className='text-2xl text-[#514F5B] font-semibold'>Rp20.000</p>
+                                            <p className='text-2xl text-[#514F5B] font-semibold'>Rp {profil?.balance}</p>
                                         </div>
                                     </div>
 
                                     <div className='w-[790px] h-[90px] rounded-xl bg-white shadow-md'>
                                         <div className='px-5 py-5'>
                                             <p className='text-md text-[#7A7886]'>Date & Time</p>
-                                            <p className='text-2xl text-[#514F5B] font-semibold'>Des 27, 2022 - 12.20</p>
+                                            <p className='text-2xl text-[#514F5B] font-semibold'>{new Date(trx.dateTrx).toString()}</p>
                                         </div>
                                     </div>
 
                                     <div className='w-[790px] h-[90px] rounded-xl bg-white shadow-md'>
                                         <div className='px-5 py-5'>
                                             <p className='text-md text-[#7A7886]'>Notes</p>
-                                            <p className='text-2xl text-[#514F5B] font-semibold'>For buying some socks</p>
+                                            <p className='text-2xl text-[#514F5B] font-semibold'>{trx.notes}</p>
                                         </div>
                                     </div>
 
@@ -66,19 +98,18 @@ const Success = () => {
 
                                     <div className='w-[790px] h-[110px] rounded-xl bg-white shadow-md flex'>
                                         <div className='flex pl-5 items-center'>
-                                            <Image className='w-[70px] h-[70px]' src={users} alt="users" />
+                                            <Image width={100} height={100} className='w-[70px] h-[70px]' src={recipient.picture ? `${process.env.NEXT_PUBLIC_URL}/upload/${recipient.picture}` : users} alt="users" />
                                         </div>
                                         <div className='px-5 py-7'>
-                                            <p className='text-xl text-[#514F5B] font-semibold'>Sueb</p>
-                                            <p className='text-md text-[#7A7886] pt-1'>+62 813-8492-9994</p>
+                                            <p className='text-xl text-[#514F5B] font-semibold'>{recipient?.firstName + ' ' + recipient?.lastName}</p>
+                                            <p className='text-md text-[#7A7886] pt-1'>{recipient?.phoneNumber}</p>
                                         </div>
                                     </div>
 
 
                                     <div className='flex justify-end gap-5 pt-10 pr-24'>
-                                        <Icon.Download />
                                         <button type="submit" className="btn w-[170px] h-[50px] bg-sky-200 rounded-lg text-[#6379F4]">Download PDF</button>
-                                        <button type="submit" className="btn w-[170px] h-[50px] bg-[#6379F4] rounded-lg text-white">Continue</button>
+                                        <Link href='/home' className="btn w-[170px] h-[50px] bg-[#6379F4] rounded-lg text-white">Continue</Link>
                                     </div>
                                 </div>
                             </div>
